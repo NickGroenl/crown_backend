@@ -1,0 +1,27 @@
+{
+  "name": "restnodemagicflex",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "engines": {
+    "node": "16.x",
+    "npm": "7.x"
+  },
+  "scripts": {
+    "test": "jest --watchAll=false --coverage --testResultsProcessor jest-sonar-reporter",
+    "dev": "nodemon --experimental-modules index.js",
+    "start": "cross-env NODE_ENV=prod node index.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.0",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "express": "^4.17.3",
+    "express-validator": "^6.14.0",
+    "jsonwebtoken": "^8.5.1",
+    "loadash": "^1.0.0",
+    "moongose": "^1.0.0",
+    "morgan": "^1.10.0"
+  }
+}
