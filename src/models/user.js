@@ -3,7 +3,7 @@ let Schema = mongoose.Schema;
 const bcrypt = require("bcryptjs");
 
 let userSchema = new Schema({
-  name: { type: String, required: false },
+  nickname: { type: String, required: false },
   email: { type: String, required: true },
   password: { type: String, required: true },
   type: { type: String, default: 'user' },
@@ -32,16 +32,16 @@ userSchema.methods.validatePassword = (password, hashedPassword) => {
   return res;
 };
 
-userSchema.statics.fillable = ["name", "email"];
+userSchema.statics.fillable = ["nickname", "email"];
 
 userSchema.statics.returnable = [
   "_id",
-  "name",
+  "nickname",
   "email",
   "timestamps",
 ];
 
-userSchema.statics.publicReturnable = ["_id", "name", "timestamps"];
+userSchema.statics.publicReturnable = ["_id", "nickname", "timestamps"];
 
 
 module.exports = mongoose.model("User", userSchema);

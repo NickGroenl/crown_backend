@@ -52,6 +52,7 @@ exports.register = async (req, res) =>{
         let user = new User();
         user.email = email;
         user.password = user.generatePasswordHash(password);
+        user.nickname = (Math.random() + 1).toString(36).substring(7);
         user = await user.save();
         user = _.pick(user, User.returnable);
         return res.status(200).json({
@@ -67,6 +68,25 @@ exports.register = async (req, res) =>{
 }
 
 
-exports.data = async (req, res) =>{
-    console.log(req.user);
+exports.configure = async (req, res) =>{
+    const user = req.user;
+    const { address, dni } = req.body;
+
+    try{
+        address && (user.address = address)
+        dni && (user.dni = dni)
+
+        await user.save();
+
+        return res.status(200).json({
+            data: user,
+        });
+    }
+    catch (err) {
+        console.log(err);
+        return res.status(400).json({
+          message: "Some error occured",
+          err,
+        });
+    }
 }

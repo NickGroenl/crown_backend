@@ -18,6 +18,8 @@ router.post("/register",
     validateRequest,
     user.register
 );
-router.get("/data", validateJWT, user.data);
+router.get("/configure", validateJWT, user.configure);
+
+
 
 module.exports = router;
